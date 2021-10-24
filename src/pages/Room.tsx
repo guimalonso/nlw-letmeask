@@ -1,4 +1,5 @@
 import { push, ref, remove } from '@firebase/database';
+import classNames from 'classnames';
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router';
 import logoImg from '../assets/images/logo.svg';
@@ -105,7 +106,10 @@ export function Room() {
                         >
                             {!question.isAnswered && (
                                 <button
-                                    className={`like-button ${question.likeId ? 'liked' : ''}`}
+                                    className={classNames(
+                                        'like-button',
+                                        {'liked': !!question.likeId}
+                                    )}
                                     type="button"
                                     aria-label="Marcar como gostei"
                                     onClick={() => handleLikeQuestion(question.id, question.likeId)}
